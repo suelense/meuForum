@@ -11,7 +11,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 
 @RestControllerAdvice
@@ -40,7 +39,8 @@ public class Exceptions {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity manageError500(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " + ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
+                body(Arrays.stream((ex.getLocalizedMessage()).split(":")).toList());
     }
 
     private record ErrorData(String field, String message) {
