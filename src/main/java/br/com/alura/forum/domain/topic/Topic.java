@@ -3,6 +3,8 @@ package br.com.alura.forum.domain.topic;
 import br.com.alura.forum.domain.course.Course;
 import br.com.alura.forum.domain.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,14 +35,44 @@ public class Topic {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    public Topic(TopicData data) {
+    public Topic(TopicData data, Course course, User user) {
         this.title = data.title();
         this.message = data.message();
         this.creationDate = data.creation_date();
         this.status = true;
+        this.course = course;
+        this.user = user;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void delete() {
+        this.status = false;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Course getCourse() {
+        return course;
     }
 }

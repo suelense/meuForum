@@ -1,5 +1,6 @@
 package br.com.alura.forum.infra.exception;
 
+import br.com.alura.forum.domain.ValidationsException;
 import com.google.gson.JsonObject;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -41,6 +42,11 @@ public class Exceptions {
     public ResponseEntity manageError500(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
                 body(Arrays.stream((ex.getLocalizedMessage()).split(":")).toList());
+    }
+
+    @ExceptionHandler(ValidationsException.class)
+    public ResponseEntity validatiosExption(ValidationsException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     private record ErrorData(String field, String message) {

@@ -24,9 +24,10 @@ public class CourseController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity registerCourse(@RequestBody @Valid CourseData data, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity registerCourse(@RequestBody @Valid CourseData data,
+                                         UriComponentsBuilder uriComponentsBuilder) {
         var course = new Course(data);
-            repository.save(course);
+        repository.save(course);
         var uri = uriComponentsBuilder.path("/courses/{id}").buildAndExpand(course.getId()).toUri();
         return ResponseEntity.created(uri).body(new CourseDTO(course));
     }

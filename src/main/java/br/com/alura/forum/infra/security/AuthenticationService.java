@@ -1,4 +1,4 @@
-package br.com.alura.forum.infra.service;
+package br.com.alura.forum.infra.security;
 
 import br.com.alura.forum.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

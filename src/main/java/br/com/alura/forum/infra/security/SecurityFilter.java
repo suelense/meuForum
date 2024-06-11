@@ -1,7 +1,6 @@
-package br.com.alura.forum.infra;
+package br.com.alura.forum.infra.security;
 
 import br.com.alura.forum.domain.user.UserRepository;
-import br.com.alura.forum.infra.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
