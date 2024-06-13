@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TopicExists implements ValidatorTopicService{
+public class TopicExists implements TopicValidator {
     @Autowired
     private TopicRepository topicRepository;
 

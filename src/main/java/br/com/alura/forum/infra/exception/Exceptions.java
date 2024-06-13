@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -49,9 +50,16 @@ public class Exceptions {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity errorBadCredentials(BadCredentialsException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
     private record ErrorData(String field, String message) {
         public ErrorData(FieldError error) {
             this(error.getField(), error.getDefaultMessage());
         }
     }
+
+
 }

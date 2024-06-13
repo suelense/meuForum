@@ -2,8 +2,7 @@ package br.com.alura.forum.domain.topic;
 
 import br.com.alura.forum.domain.course.CourseRepository;
 import br.com.alura.forum.domain.user.UserRepository;
-import br.com.alura.forum.domain.topic.validations.ValidatorTopicService;
-import br.com.alura.forum.dto.TopicDTO;
+import br.com.alura.forum.domain.topic.validations.TopicValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +20,9 @@ public class TopicService {
     private CourseRepository courseRepository;
 
     @Autowired
-    private List<ValidatorTopicService> validations;
+    private List<TopicValidator> validations;
 
     public TopicDTO topicSave(TopicData data) {
-        System.out.println(data.title());
         validations.forEach(v -> v.validate(data));
         var user = userRepository.getReferenceById(data.user_id());
         var course = courseRepository.getReferenceById(data.course_id());

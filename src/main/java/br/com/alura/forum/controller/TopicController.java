@@ -1,10 +1,9 @@
 package br.com.alura.forum.controller;
 
-import br.com.alura.forum.domain.topic.Topic;
-import br.com.alura.forum.domain.topic.TopicData;
-import br.com.alura.forum.domain.topic.TopicRepository;
-import br.com.alura.forum.domain.topic.TopicService;
-import br.com.alura.forum.dto.TopicDTO;
+import br.com.alura.forum.domain.course.Course;
+import br.com.alura.forum.domain.course.CourseDTO;
+import br.com.alura.forum.domain.course.CourseUpdateDTO;
+import br.com.alura.forum.domain.topic.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +48,14 @@ public class TopicController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity updateCourse(@PathVariable Long id, TopicUpdateDTO data) {
+        var topic = repository.getReferenceById(id);
+        topic.updateCourse(data);
+        return ResponseEntity.ok(new TopicDTO(topic));
+    }
+
     @GetMapping("/{id}")
     @Transactional
     public ResponseEntity showTopic(@PathVariable Long id) {
@@ -56,5 +63,10 @@ public class TopicController {
         return ResponseEntity.ok(new TopicDTO(topic));
     }
 
-
+    @GetMapping("/course/{id}")
+    @Transactional
+    public ResponseEntity <List<TopicDTO>> showTopicByCourse(@PathVariable Long id) {
+        var list = repository.findAllByCourse_id(id).stream().map(TopicDTO::new).toList();
+        return ResponseEntity.ok(list);
+    }
 }

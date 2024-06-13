@@ -1,11 +1,10 @@
-package br.com.alura.forum.dto;
+package br.com.alura.forum.domain.topic;
 
-import br.com.alura.forum.domain.course.Course;
-import br.com.alura.forum.domain.course.CourseData;
-import br.com.alura.forum.domain.topic.Topic;
-import br.com.alura.forum.domain.user.User;
+import br.com.alura.forum.domain.answer.Answer;
+import br.com.alura.forum.domain.answer.AnswerDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record TopicDTO(Long id,
                        String title,
@@ -13,7 +12,9 @@ public record TopicDTO(Long id,
                        LocalDateTime creation_date,
                        Boolean status,
                        String course,
-                       String user) {
+                       Long userId,
+                       String userName) {
+
     public TopicDTO(Topic topic) {
         this(topic.getId(),
                 topic.getTitle(),
@@ -21,6 +22,7 @@ public record TopicDTO(Long id,
                 topic.getCreationDate(),
                 topic.getStatus(),
                 topic.getCourse().getName(),
-                topic.getUser().getEmail());
+                topic.getUser().getId(),
+                topic.getUser().getName());
     }
 }

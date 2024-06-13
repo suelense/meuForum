@@ -1,16 +1,20 @@
 package br.com.alura.forum.domain.topic;
 
+import br.com.alura.forum.domain.answer.Answer;
+import br.com.alura.forum.domain.answer.AnswerDTO;
+import br.com.alura.forum.domain.answer.AnswerRepository;
 import br.com.alura.forum.domain.course.Course;
 import br.com.alura.forum.domain.user.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Table(name = "topics")
 @Entity(name = "Topic")
@@ -74,5 +78,17 @@ public class Topic {
 
     public Course getCourse() {
         return course;
+    }
+
+    public void updateCourse(TopicUpdateDTO data) {
+        if (data.title() != null) {
+            this.title = data.title();
+        }
+        if (data.message() != null) {
+            this.message = data.message();
+        }
+        if (data.status() != null) {
+            this.status = data.status();
+        }
     }
 }

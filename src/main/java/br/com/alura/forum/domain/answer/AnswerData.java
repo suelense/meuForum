@@ -6,5 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public record AnswerData(@NotBlank String message,
-                         @NotNull LocalDateTime creation_date) {
+                         @NotNull LocalDateTime creation_date,
+                         @NotNull Long topic_id,
+                         @NotNull Long user_id) {
 }

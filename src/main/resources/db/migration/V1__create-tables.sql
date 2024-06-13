@@ -9,7 +9,8 @@ create table users(
 create table courses(
     id serial not null primary key,
     name varchar(255) not null unique,
-    category varchar(100) not null
+    category varchar(100) not null,
+    active boolean
 );
 
 create table topics(
@@ -28,7 +29,7 @@ create table topics(
 
 create table answers(
     id serial not null primary key,
-    message varchar(500) not null unique,
+    message varchar(500) not null,
     topic_id bigint not null,
     user_id bigint not null,
     creation_date timestamp not null,

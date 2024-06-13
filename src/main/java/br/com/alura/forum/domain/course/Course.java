@@ -1,6 +1,5 @@
 package br.com.alura.forum.domain.course;
 
-import br.com.alura.forum.dto.CourseUpdateDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

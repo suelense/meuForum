@@ -1,7 +1,4 @@
-package br.com.alura.forum.dto;
-
-import br.com.alura.forum.domain.course.Category;
-import br.com.alura.forum.domain.course.Course;
+package br.com.alura.forum.domain.course;
 
 public record CourseDTO(Long id,
                         Category category,
