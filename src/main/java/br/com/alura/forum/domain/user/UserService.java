@@ -18,7 +18,6 @@ public class UserService {
         validations.forEach(v -> v.validate(data));
         var user = new User(data);
         userRepository.save(user);
-
         return new UserDTO(user);
     }
 }

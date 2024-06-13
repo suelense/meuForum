@@ -26,7 +26,14 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    @Autowired UserService userService;
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    private AuthenticationManager manager;
+
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping
     @Transactional
@@ -36,14 +43,7 @@ public class UserController {
         var uri = uriComponentsBuilder.path("/users/{id}").buildAndExpand(dto.id()).toUri();
         var user = repository.getReferenceById(dto.id());
         return ResponseEntity.created(uri).body(new UserDTO(user));
-
     }
-
-    @Autowired
-    private AuthenticationManager manager;
-
-    @Autowired
-    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authenticationDTO) {
@@ -53,7 +53,6 @@ public class UserController {
         );
         var authentication = manager.authenticate(authenticationToken);
         var tokenJWT = tokenService.setToken((User) authentication.getPrincipal());
-
         return ResponseEntity.ok(new TokenDTO(tokenJWT));
     }
 }

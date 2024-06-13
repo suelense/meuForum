@@ -1,6 +1,5 @@
 package br.com.alura.forum.domain.answer;
 
-import br.com.alura.forum.domain.topic.Topic;
 import br.com.alura.forum.domain.topic.TopicRepository;
 import br.com.alura.forum.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +19,8 @@ public class AnswerService {
     public AnswerDTO registerAnswer(AnswerData data) {
         var user = userRepository.getReferenceById(data.user_id());
         var topic = topicRepository.getReferenceById(data.topic_id());
-        var answer = new Answer(data,topic, user);
+        var answer = new Answer(data, topic, user);
         answerRepository.save(answer);
-
         return new AnswerDTO(answer);
     }
-
 }

@@ -1,8 +1,5 @@
 package br.com.alura.forum.controller;
 
-import br.com.alura.forum.domain.course.Course;
-import br.com.alura.forum.domain.course.CourseDTO;
-import br.com.alura.forum.domain.course.CourseUpdateDTO;
 import br.com.alura.forum.domain.topic.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -65,7 +62,7 @@ public class TopicController {
 
     @GetMapping("/course/{id}")
     @Transactional
-    public ResponseEntity <List<TopicDTO>> showTopicByCourse(@PathVariable Long id) {
+    public ResponseEntity<List<TopicDTO>> showTopicByCourse(@PathVariable Long id) {
         var list = repository.findAllByCourse_id(id).stream().map(TopicDTO::new).toList();
         return ResponseEntity.ok(list);
     }

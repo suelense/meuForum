@@ -1,10 +1,6 @@
 package br.com.alura.forum.domain.topic;
 
-import br.com.alura.forum.domain.answer.Answer;
-import br.com.alura.forum.domain.answer.AnswerDTO;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 public record TopicDTO(Long id,
                        String title,

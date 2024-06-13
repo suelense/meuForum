@@ -57,5 +57,4 @@ public class Answer {
     public User getUser() {
         return user;
     }
-
 }

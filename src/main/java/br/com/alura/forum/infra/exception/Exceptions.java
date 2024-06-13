@@ -1,7 +1,6 @@
 package br.com.alura.forum.infra.exception;
 
 import br.com.alura.forum.domain.ValidationsException;
-import com.google.gson.JsonObject;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -60,6 +59,4 @@ public class Exceptions {
             this(error.getField(), error.getDefaultMessage());
         }
     }
-
-
 }

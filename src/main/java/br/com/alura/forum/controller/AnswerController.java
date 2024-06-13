@@ -4,18 +4,13 @@ import br.com.alura.forum.domain.answer.AnswerData;
 import br.com.alura.forum.domain.answer.AnswerRepository;
 import br.com.alura.forum.domain.answer.AnswerService;
 import br.com.alura.forum.domain.answer.AnswerDTO;
-import br.com.alura.forum.domain.course.CourseDTO;
-import br.com.alura.forum.domain.topic.TopicDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("answers")
@@ -36,9 +31,8 @@ public class AnswerController {
 
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity <List<AnswerDTO>> showAnswerByTopic(@PathVariable Long id) {
+    public ResponseEntity<List<AnswerDTO>> showAnswerByTopic(@PathVariable Long id) {
         var list = repository.findAllByTopic_id(id).stream().map(AnswerDTO::new).toList();
-        list.forEach(System.out::println);
         return ResponseEntity.ok(list);
     }
 

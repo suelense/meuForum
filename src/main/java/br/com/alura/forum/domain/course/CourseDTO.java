@@ -5,6 +5,6 @@ public record CourseDTO(Long id,
                         String name,
                         Boolean active) {
     public CourseDTO(Course course) {
-        this(course.getId() ,course.getCategory(), course.getName(), course.getActive());
+        this(course.getId(), course.getCategory(), course.getName(), course.getActive());
     }
 }

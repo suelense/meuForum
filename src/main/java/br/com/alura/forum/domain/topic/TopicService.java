@@ -28,7 +28,6 @@ public class TopicService {
         var course = courseRepository.getReferenceById(data.course_id());
         var topic = new Topic(data, course, user);
         topicRepository.save(topic);
-
         return new TopicDTO(topic);
     }
 }

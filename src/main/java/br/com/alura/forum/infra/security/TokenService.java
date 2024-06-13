@@ -25,25 +25,27 @@ public class TokenService {
                     .withSubject(user.getEmail())
                     .withExpiresAt(expirationDate())
                     .sign(algorithm);
-        } catch (JWTCreationException exception){
+        } catch (JWTCreationException exception) {
             throw new RuntimeException("Erro ao gerar token", exception);
         }
     }
 
     public String getSubject(String tokenJWT) {
         try {
-            var algorithm = Algorithm.HMAC256(secret);;
+            var algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
                     .withIssuer("API forum")
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
-        } catch (JWTVerificationException exception){
+        } catch (JWTVerificationException exception) {
             throw new RuntimeException("Token inválido ou expirado", exception);
         }
     }
 
     private Instant expirationDate() {
-        return LocalDateTime.now().plusHours(4).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now()
+                .plusHours(4)
+                .toInstant(ZoneOffset.of("-03:00"));
     }
 }
