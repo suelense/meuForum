@@ -37,24 +37,4 @@ public class Answer {
         this.topic = topic;
         this.user = user;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public LocalDateTime getCreation_date() {
-        return creation_date;
-    }
-
-    public Topic getTopic() {
-        return topic;
-    }
-
-    public User getUser() {
-        return user;
-    }
 }

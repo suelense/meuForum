@@ -29,18 +29,6 @@ public class Course {
         this.active = true;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
     public void updateCourse(CourseUpdateDTO data) {
         if (data.name() != null) {
             this.name = data.name();
@@ -48,10 +36,6 @@ public class Course {
         if (data.category() != null) {
             this.category = data.category();
         }
-    }
-
-    public Boolean getActive() {
-        return active;
     }
 
     public void delete() {

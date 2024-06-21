@@ -42,36 +42,8 @@ public class Topic {
         this.user = user;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
     public void delete() {
         this.status = false;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Course getCourse() {
-        return course;
     }
 
     public void updateCourse(TopicUpdateDTO data) {

@@ -45,7 +45,7 @@ public class Exceptions {
     }
 
     @ExceptionHandler(ValidationsException.class)
-    public ResponseEntity validatiosExption(ValidationsException ex) {
+    public ResponseEntity validatiosException(ValidationsException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
